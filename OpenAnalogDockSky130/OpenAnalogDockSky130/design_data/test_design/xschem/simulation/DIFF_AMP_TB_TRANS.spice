@@ -1,0 +1,52 @@
+** sch_path: /home/vncuser/design_data/test_design/xschem/DIFF_AMP_TB_TRANS.sch
+**.subckt DIFF_AMP_TB_TRANS
+x1 VDD VIN- VIN+ VBIAS 0 out DIFF_AMP
+V1 VDD 0 1.8
+V2 VIN+ 0 dc 0.9 sin 0.9 10n 1e6 0 0
+V3 VIN- 0 0.9
+V4 VBIAS 0 0.9
+
+**** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /pdks/sky130A/libs.tech/combined/sky130.lib.spice tt
+
+.include /home/vncuser/design_data/test_design/xschem/simulation/DIFF_AMP_TB_TRANS.save 
+
+.control 
+saveall 
+op 
+write DIFF_AMP_TRANS.raw 
+set appendwrite 
+
+
+trans 0.01u 10u 
+write DIFF_AMP_TRANS.raw 
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /home/vncuser/design_data/test_design/xschem/DIFF_AMP.sym # of pins=6
+** sym_path: /home/vncuser/design_data/test_design/xschem/DIFF_AMP.sym
+** sch_path: /home/vncuser/design_data/test_design/xschem/DIFF_AMP.sch
+.subckt DIFF_AMP VDD VIN- VIN+ VBIAS VSS OUT
+*.iopin OUT
+*.iopin VDD
+*.iopin VIN+
+*.iopin VIN-
+*.iopin VBIAS
+*.iopin VSS
+XM1 net1 VIN+ net2 net2 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM2 OUT VIN- net2 net2 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM3 net2 VBIAS VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM4 net1 net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM5 OUT net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+.ends
+
+.end

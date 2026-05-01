@@ -1,0 +1,37 @@
+services:
+  daecos-app:
+    # build:
+    #   context: ./
+    #   args:
+    #     OPENVAF_TARBALL: ${OPENVAF_TARBALL:-openvaf_23_5_0_linux_amd64.tar.gz}
+    # image: chip-designer-sky-app:local
+    # pull_policy: never
+    image: vishalgupta7/openanalogdocksky130:latest
+    platform: linux/amd64
+    env_file: .env       #create .env file on local
+    container_name: ${CONTAINER_NAME:-chip-designer-sky-app}
+    ports:
+      - "${PORT}:5901"  # Map port 3210 on the host to ${PORT}  in the container
+      - "${PORT1}:6080"  # Map port 3210 on the host to ${PORT}  in the container
+      - "${PORT2}:3389"  # Map port 3210 on the host to ${PORT}  in the container
+    environment:
+      - VNC_PASSWORD=${VNC_PASSWORD}
+      - VNC_GEOMETRY=1280x800   # optional
+      - TZ=Asia/Kolkata
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "2"
+
+    restart: unless-stopped
+
+    volumes:
+      - ${DESIGN_DATA_DIR}:/work/design_data        # Named volume for PostgreSQL Mount
+    deploy:
+      resources:
+        limits:
+          cpus:  ${CPU_LIMIT:-2}
+          memory:  ${MEM_LIMIT:-2G}
+        reservations:
+          memory: ${MEM_RESERVATION:-1G}

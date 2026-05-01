@@ -1,0 +1,33 @@
+* NGSPICE file created from DIFF_AMP.ext - technology: sky130A
+
+.subckt sky130_fd_pr__nfet_01v8_DUA33X B D0 G S1 D2 S3 a_287_n1031#
+X0 a_287_n1031# G S3 B sky130_fd_pr__nfet_01v8 ad=2.9 pd=20.58 as=1.45 ps=10.29 w=10 l=0.5
+X1 D2 G S1 B sky130_fd_pr__nfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X2 S1 G D0 B sky130_fd_pr__nfet_01v8 ad=1.45 pd=10.29 as=2.9 ps=20.58 w=10 l=0.5
+X3 S3 G D2 B sky130_fd_pr__nfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+.ends
+
+.subckt sky130_fd_pr__nfet_01v8_5NTHQT B D0 G S1 a_129_n831#
+X0 a_129_n831# G S1 B sky130_fd_pr__nfet_01v8 ad=2.32 pd=16.58 as=1.16 ps=8.29 w=8 l=0.5
+X1 S1 G D0 B sky130_fd_pr__nfet_01v8 ad=1.16 pd=8.29 as=2.32 ps=16.58 w=8 l=0.5
+.ends
+
+.subckt sky130_fd_pr__pfet_01v8_D49JDG B D0 G S1 D2 S3 D4 S5 D6 S7 a_603_n1036#
+X0 D4 G S3 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X1 S3 G D2 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X2 S5 G D4 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X3 S7 G D6 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X4 D2 G S1 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+X5 a_603_n1036# G S7 B sky130_fd_pr__pfet_01v8 ad=2.9 pd=20.58 as=1.45 ps=10.29 w=10 l=0.5
+X6 S1 G D0 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=2.9 ps=20.58 w=10 l=0.5
+X7 D6 G S5 B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.29 as=1.45 ps=10.29 w=10 l=0.5
+.ends
+
+.subckt DIFF_AMP VDD vinm vinn vbias VSS out
+XXM1 VSS XM5/G vinn XM3/D0 XM5/G XM3/D0 XM5/G sky130_fd_pr__nfet_01v8_DUA33X
+XXM2 VSS out vinm XM3/D0 out XM3/D0 out sky130_fd_pr__nfet_01v8_DUA33X
+XXM3 VSS XM3/D0 vbias VSS XM3/D0 sky130_fd_pr__nfet_01v8_5NTHQT
+XXM4 VDD XM5/G XM5/G VDD XM5/G VDD XM5/G VDD XM5/G VDD XM5/G sky130_fd_pr__pfet_01v8_D49JDG
+XXM5 VDD out XM5/G VDD out VDD out VDD out VDD out sky130_fd_pr__pfet_01v8_D49JDG
+.ends
+
