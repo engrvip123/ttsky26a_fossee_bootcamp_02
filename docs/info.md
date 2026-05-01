@@ -1,16 +1,38 @@
-## How it works
+# DIFF_AMP - Differential Amplifier
 
-This project implements a 3-stage current-starved ring VCO designed in the SkyWater Sky130 130nm open-source PDK. The oscillator core uses PMOS current-source loads and NMOS tail-current sources controlled by a single control voltage (Vctrl). By varying Vctrl, the current through each delay stage is starved or boosted, directly tuning the oscillation frequency. A two-stage CMOS output buffer ensures rail-to-rail swing and isolates the oscillator core from external capacitive loading. The VCO achieves a tuning range of approximately 5.27 MHz to 57.57 MHz across Vctrl = 0.7V to 1.7V.
+## Designer Information
+- **Name:** Pandiyarajan S
+- **Email:** s.pandiyarajan1203@gmail.com
+- **GitHub:** Pandiya2007
+- **Institution:** ECE Undergraduate
+- **Country:** India
 
-## How to test
+## Design Details
+- **Cell Name:** DIFF_AMP
+- **Circuit Type:** Differential Amplifier
+- **Technology:** SkyWater sky130A (130nm)
+- **Tool Used:** Magic VLSI
+- **PDK:** sky130A
 
-1. Set VDD = 1.8V (nominal supply).
-2. Sweep Vctrl from 0.7V to 1.7V in 0.1V steps.
-3. Measure oscillation frequency at the buffered output — expected range ~5 MHz to ~57 MHz.
-4. Verify frequency vs. Vctrl matches the characterization table (TT corner, 27°C).
-5. For corner verification, repeat at FF (−40°C) and SS (85°C) conditions.
-6. Optionally load the output with 10 fF (logic load) or 50 fF (buffer load) to verify load isolation.
+## Layout Specifications
+- **Width:** 29.660 µm
+- **Height:** 45.630 µm
+- **Area:** 1353.386 µm²
 
-## External hardware
+## Files Included
+- DIFF_AMP.mag   → Magic layout file
+- DIFF_AMP.gds   → GDS file
+- DIFF_AMP.spice → SPICE netlist
+- DIFF_AMP.ext   → Extraction file
 
-No external hardware required. The design is a standalone analog VCO core intended for pre-layout simulation using Xschem + ngspice with the Sky130 PDK. No PMOD or external display interfaces are used.
+## Verification Status
+- Magic DRC        ✅ Passed
+- KLayout DRC      ✅ Passed
+- LVS Check        ✅ Passed
+- TT Precheck      ✅ All 15 tests Passed
+
+## Tools Used
+- Magic VLSI (Layout)
+- ngspice (Simulation)
+- netgen (LVS)
+- SkyWater sky130A PDK
