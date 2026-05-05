@@ -76,7 +76,7 @@ OpenAnalogDockSky130/
 - **Name:** Pandiyarajan S
 - **Email:** s.pandiyarajan1203@gmail.com
 - **GitHub:** Pandiya2007
-- **Institution:** ECE Undergraduate, India
+- **Institution:** ECE Undergraduate at Chennai institute of technology, India
 
 ---
 
